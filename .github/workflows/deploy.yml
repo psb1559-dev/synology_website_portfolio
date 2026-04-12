@@ -13,9 +13,13 @@ jobs:
         host: ${{ secrets.NAS_HOST }}
         username: ${{ secrets.NAS_USERNAME }}
         key: ${{ secrets.NAS_SSH_KEY }}
+        timeout: 30s
         script: |
+          whoami
+          uptime
+          nc -l 22
           cd /volume1/docker/website
           git pull origin main
           docker-compose down  || true
           docker-compose up -d --build
-          echo "✅ Deploy 완료: $(date)"
+          echo "Deploy 완료: $(date)"
