@@ -13,7 +13,7 @@ jobs:
         host: ${{ secrets.NAS_HOST }}
         username: ${{ secrets.NAS_USERNAME }}
         key: ${{ secrets.NAS_SSH_KEY }}
-        timeout: 120s
+        timeout: 10m
         debug: true 
         script: |
           cd /volume1/docker/website
