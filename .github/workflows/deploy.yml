@@ -1,0 +1,19 @@
+name: Deploy to NAS_Website Portfolio
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Deploy to NAS_Website Portfolio
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.WEBSITE_PROFILE_SECRETINFO }}
+        username: root
+        key: ${{ secrets.NAS_SSH_KEY }}
+        script: |
+          cd /volume1/docker/website
+          git pull origin main
+          docker-compose down
