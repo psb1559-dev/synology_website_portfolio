@@ -18,6 +18,7 @@ jobs:
         script: |
           cd /volume1/docker/website
           /usr/local/bin/docker compose stop
+          /usr/local/bin/docker volume prune -f --all
           git pull origin main
           /usr/local/bin/docker rm -f my_redis my_node_app my_nginx || true
           /usr/local/bin/docker compose build --no-cache
