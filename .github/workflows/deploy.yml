@@ -16,4 +16,6 @@ jobs:
         script: |
           cd /volume1/docker/website
           git pull origin main
-          docker-compose down
+          docker-compose down  || true
+          docker-compose up -d --build
+          echo "✅ Deploy 완료: $(date)"
