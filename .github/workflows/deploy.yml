@@ -1,0 +1,21 @@
+name: Deploy to NAS_Website_Portfolio
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Deploy Portfolio to Synology
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.NAS_HOST }}
+        username: ${{ secrets.NAS_USERNAME }}
+        key: ${{ secrets.NAS_SSH_KEY }}
+        script: |
+          cd ${{ secrets.NAS_PATH }}
+          git pull origin main
+          docker-compose down || true
+          docker-compose up -d --build
+          echo "✅ NAS_Website_Portfolio Deploy 완료: $(date)"
