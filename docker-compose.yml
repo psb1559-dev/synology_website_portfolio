@@ -15,7 +15,7 @@ services:
     working_dir: /app
     volumes:
       - ./app:/app
-      - /app/node_modules
+      #- /app/node_modules
     command: sh -c "npm install && node index.js"
     depends_on:
       - redis # Redis가 켜진 후 실행되도록 설정
