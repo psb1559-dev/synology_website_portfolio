@@ -10,8 +10,8 @@ jobs:
     - name: Deploy to NAS_Website Portfolio
       uses: appleboy/ssh-action@v1.0.0
       with:
-        host: ${{ secrets.WEBSITE_PROFILE_SECRETINFO }}
-        username: root
+        host: ${{ secrets.NAS_HOST }}
+        username: ${{ secrets.NAS_USERNAME }}
         key: ${{ secrets.NAS_SSH_KEY }}
         script: |
           cd /volume1/docker/website
