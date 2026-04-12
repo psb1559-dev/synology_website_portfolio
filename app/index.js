@@ -12,7 +12,7 @@ const redisClient = redis.createClient({
 redisClient.connect().catch(console.error);
 
 app.get('/', async (req, res) => {
-  await redisClient.set('visitor_message', '환영합니다! Nginx + Node.js + Redis 구성 성공! github Action을 사용한 CI/CD자동화 구성했습니다!');
+  await redisClient.set('visitor_message', '환영합니다! Nginx + Node.js + Redis 구성 성공!\r\n github Action을 사용한 CI/CD자동화 구성했습니다!');
   const message = await redisClient.get('visitor_message');
   res.send(`<h1>${message}</h1>`);
 });
