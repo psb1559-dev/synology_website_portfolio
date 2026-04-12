@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # 1. Redis (캐시 서버)
+  redis:
+    image: redis:alpine
+    container_name: my_redis
+    restart: always
+
+  # 2. Node.js (웹 애플리케이션)
+  node-app:
+    image: node:22.11.0-alpine
+    container_name: my_node_app
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    command: sh -c "npm install && node index.js"
+    depends_on:
+      - redis # Redis가 켜진 후 실행되도록 설정
+
+  # 3. Nginx (웹 서버)
+  nginx:
+    image: nginx:alpine
+    container_name: my_nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - node-app

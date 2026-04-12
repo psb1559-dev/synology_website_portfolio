@@ -1,0 +1,9 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^5.2.1",
+    "redis"  : "^4.6.0"
+  }
+}
+
