@@ -19,5 +19,6 @@ jobs:
           cd /volume1/docker/website
           git pull origin main
           docker-compose down  || true
-          docker-compose up -d --build
+          docker-compose up -d --build --force-recreate
+          docker system prune -f
           echo "Deploy 완료: $(date)"
