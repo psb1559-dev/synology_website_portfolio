@@ -21,7 +21,7 @@ services:
       - redis # Redis가 켜진 후 실행되도록 설정
     environment:
       - NODE_ENV=production
-  # 3. Nginx (웹 서버)
+  # 3. Nginx
   nginx:
     image: nginx:alpine
     container_name: my_nginx
